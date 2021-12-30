@@ -1,0 +1,211 @@
+class Token {
+    String class_Part;
+    String value_Part;
+    int line_Number;
+
+    Token(String classPart, String valuePart, int lineNumber) {
+  this.class_Part = classPart;
+        this.value_Part = valuePart;
+        this.line_Number = lineNumber;
+    }
+}
+
+class LexicalAnalyzer {
+     static  ArrayList<Token> TokenList = new ArrayList<>(Arrays.asList());
+    ArrayList<String> word_BreakedArray;
+    ArrayList<String> key_WordArray = new ArrayList<String>(Arrays.asList("return", "void", "class","if","elseif","do","while","else","for","array","ArrayList","this","super","extends"));
+    ArrayList<String> datatype = new ArrayList<String>(Arrays.asList("double", "string","boolean"));
+    ArrayList<String> punctuator_Array = new ArrayList<String>(Arrays.asList(";", ",", "{", "}", "(", ")", "[", "]"));
+    ArrayList<String> boolean_Array = new ArrayList<String>(Arrays.asList("true", "false"));
+    ArrayList<String> AccessModifier = new ArrayList<String>(Arrays.asList("public", "private"));
+    ArrayList<String> linechange_Array = new ArrayList<String>(Arrays.asList("\n","\r"));
+    //ArrayList<String> Refernce_Array = new ArrayList<String>(Arrays.asList("this","super"));
+    ArrayList<String> incdec_Array = new ArrayList<String>(Arrays.asList("++", "--")); 
+
+
+    LexicalAnalyzer(ArrayList<String> file) {
+        this.word_BreakedArray = file;
+    }
+
+    void GenerateToken() {
+
+int i, j;
+        int k=0;
+        String n = "\n";
+        int lineNumber = 1;
+        boolean isTokenGenrated = false;
+        for (i = 0; i < word_BreakedArray.size(); i++) {
+            if (word_BreakedArray.get(i).equals(n)) {
+                lineNumber++;
+
+            }
+
+
+            if (word_BreakedArray.get(i).equals("+") || word_BreakedArray.get(i).equals("-")) {
+                Token PmToken = new Token("PM", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + PmToken.class_Part + "," + PmToken.value_Part + "," + PmToken.line_Number + "}");
+                TokenList.add(PmToken);
+               // System.out.println(TokenList.get(0).value_Part.toString());
+            } else if (word_BreakedArray.get(i).equals("*") || word_BreakedArray.get(i).equals("/") || word_BreakedArray.get(i).equals("%")) {
+                Token AmToken = new Token("AM", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + AmToken.class_Part + "," + AmToken.value_Part + "," + AmToken.line_Number + "}");
+                 TokenList.add(AmToken);
+               // System.out.println(TokenList.get(0).value_Part.toString());
+
+            } else if (word_BreakedArray.get(i).equals("||") || word_BreakedArray.get(i).equals("&&")) {
+                Token LogicalOperatorToken = new Token("Logicaloperator", word_BreakedArray.get(i), lineNumber);
+           isTokenGenrated = true;
+               System.out.println("{" + LogicalOperatorToken.class_Part + "," + LogicalOperatorToken.value_Part + "," + LogicalOperatorToken.line_Number + "}");
+                TokenList.add(LogicalOperatorToken);
+          //  System.out.println(TokenList.get(0).value_Part.toString());
+            } else if (word_BreakedArray.get(i).equals("!")) {
+                Token NotOperatorToken = new Token("Notoperator", word_BreakedArray.get(i), lineNumber);
+     isTokenGenrated = true;
+                System.out.println("{" + NotOperatorToken.class_Part + "," + NotOperatorToken.value_Part + "," + NotOperatorToken.line_Number + "}");
+                TokenList.add(NotOperatorToken);
+                //System.out.println(TokenList.get(0).value_Part.toString());
+            } else if (word_BreakedArray.get(i).equals("=")) {
+                Token AssignmentoperatorToken = new Token("Assignmentoperator", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + AssignmentoperatorToken.class_Part + "," + AssignmentoperatorToken.value_Part + "," + AssignmentoperatorToken.line_Number + "}");
+                TokenList.add(AssignmentoperatorToken);
+
+            } else if (word_BreakedArray.get(i).equals("<") || word_BreakedArray.get(i).equals(">")||word_BreakedArray.get(i).equals("!=")||word_BreakedArray.get(i).equals("==")) {
+                Token RationaloperatorToken = new Token("Rationaloperator", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + RationaloperatorToken.class_Part + "," + RationaloperatorToken.value_Part + "," + RationaloperatorToken.line_Number + "}");
+                TokenList.add(RationaloperatorToken);
+            }
+              else if (word_BreakedArray.get(i).equals("++") || word_BreakedArray.get(i).equals("--")) {
+                Token incdecToken = new Token("incdec", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + incdecToken.class_Part + "," + incdecToken.value_Part + "," + incdecToken.line_Number + "}");
+                 TokenList.add(incdecToken);
+        }
+              else if (word_BreakedArray.get(i).equals("\n") ||word_BreakedArray.get(i).equals("\r") ) {
+               // Token RationaloperatorToken = new Token("Rationaloperator", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                //System.out.println("{" + RationaloperatorToken.class_Part + "," + RationaloperatorToken.value_Part + "," + RationaloperatorToken.line_Number + "}");
+
+            } else if (word_BreakedArray.get(i).equals("#")) {
+                Token RefToken = new Token("reference", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + RefToken.class_Part + "," + RefToken.value_Part + "," + RefToken.line_Number + "}");
+                 TokenList.add(RefToken);
+            }
+              else {
+
+            }
+            for (j = 0; j < punctuator_Array.size(); j++) {
+
+                if (word_BreakedArray.get(i).equals(punctuator_Array.get(j))) {
+                    Token PunctuatorToken = new Token(punctuator_Array.get(j), word_BreakedArray.get(i), lineNumber);
+                    isTokenGenrated = true;
+                    System.out.println("{" + PunctuatorToken.class_Part + "," + PunctuatorToken.value_Part + "," + PunctuatorToken.line_Number + "}");
+                    TokenList.add(PunctuatorToken);
+                }
+            }
+
+            Pattern identifier = Pattern.compile("([A-Za-z][_]?|_)([A-Za-z0-9]+[_]?)*");
+  Matcher idmatch = identifier.matcher(word_BreakedArray.get(i));
+            boolean id = idmatch.matches();
+            boolean IsIdentifier;
+            if (id == true) {
+                IsIdentifier = false;
+                if (IsIdentifier == false) {
+                    for (j = 0; j < key_WordArray.size(); j++) {
+                        if (word_BreakedArray.get(i).equals(key_WordArray.get(j))) {
+                            Token KeywordToken = new Token(key_WordArray.get(j), word_BreakedArray.get(i), lineNumber);
+                            isTokenGenrated = true;
+                            System.out.println("{" + KeywordToken.class_Part + "," + KeywordToken.value_Part + "," + KeywordToken.line_Number + "}");
+                           TokenList.add(KeywordToken);
+                            IsIdentifier = true;
+                        }
+                    }
+                }
+                if (IsIdentifier == false) {
+                    for (j = 0; j < AccessModifier.size(); j++) {
+                        if (word_BreakedArray.get(i).equals(AccessModifier.get(j))) {
+                            Token AccessModifierToken = new Token("AccessModifier", word_BreakedArray.get(i), lineNumber);
+                            isTokenGenrated = true;
+                            System.out.println("{" + AccessModifierToken.class_Part + "," + AccessModifierToken.value_Part + "," + AccessModifierToken.line_Number + "}");
+                           TokenList.add(AccessModifierToken);
+                     IsIdentifier = true;
+                        }
+                    }
+                }
+                if (IsIdentifier == false) {
+                    for (j = 0; j < datatype.size(); j++) {
+
+                        if (word_BreakedArray.get(i).equals(datatype.get(j))) {
+                            Token DataTypeToken = new Token("Datatype", word_BreakedArray.get(i), lineNumber);
+                            isTokenGenrated = true;
+                            System.out.println("{" + DataTypeToken.class_Part + "," + DataTypeToken.value_Part + "," + DataTypeToken.line_Number + "}");
+                           TokenList.add(DataTypeToken);
+                            IsIdentifier = true;
+                        }
+        }
+                }
+                if (IsIdentifier == false) {
+                    for (j = 0; j < boolean_Array.size(); j++) {
+                        if (word_BreakedArray.get(i).equals(boolean_Array.get(j))) {
+                   Token BoolToken = new Token("boolean", word_BreakedArray.get(i), lineNumber);
+                            isTokenGenrated = true;
+                            System.out.println("{" + BoolToken.class_Part + "," + BoolToken.value_Part + "," + BoolToken.line_Number + "}");
+                            TokenList.add(BoolToken);
+                            IsIdentifier = true;
+                        }
+                    }
+                }
+                if (IsIdentifier == false) {
+
+    Token IdentifierToken = new Token("Identifier", word_BreakedArray.get(i), lineNumber);
+                    isTokenGenrated = true;
+                    System.out.println("{" + IdentifierToken.class_Part + "," + IdentifierToken.value_Part + "," + IdentifierToken.line_Number + "}");
+                    TokenList.add(IdentifierToken);
+                }
+            }
+
+            Pattern doubleMatch = Pattern.compile("[+-]?[0-9]*[.]?[0-9]+");
+            Matcher dbMatch = doubleMatch.matcher(word_BreakedArray.get(i));
+            boolean dB = dbMatch.matches();
+            if (dB == true) {
+                Token DoubleToken = new Token("double", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+          System.out.println("{" + DoubleToken.class_Part + "," + DoubleToken.value_Part + "," + DoubleToken.line_Number + "}");
+                TokenList.add(DoubleToken);
+            }
+            Pattern stringMatch = Pattern.compile("\".*?\"");
+         Matcher stMatch = stringMatch.matcher(word_BreakedArray.get(i));
+            boolean sT = stMatch.matches();
+            if (sT == true) {
+                String f = word_BreakedArray.get(i).replaceAll("^\"|\"$", "");
+                Token StringToken = new Token("string", f, lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + StringToken.class_Part + "," + StringToken.value_Part + "," + StringToken.line_Number + "}");
+            TokenList.add(StringToken );
+            }
+
+            if (isTokenGenrated == false) {
+                Token InvalidToken = new Token("invalid", word_BreakedArray.get(i), lineNumber);
+                isTokenGenrated = true;
+                System.out.println("{" + InvalidToken.class_Part + " " + "Valuepart:" + InvalidToken.value_Part + "," + InvalidToken.line_Number + "}");
+
+            }
+            isTokenGenrated = false;
+//            for(k=0; k<TokenList.size(); k++){
+//            System.out.println(TokenList.get(k).value_Part.toString());
+//            
+           //}
+    }
+                Token EndMarkerToken = new Token("EndMarker", "$", lineNumber);
+        TokenList.add(EndMarkerToken );
+        System.out.println("{" + EndMarkerToken.class_Part + " " + "Valuepart:" + EndMarkerToken.value_Part + "," + EndMarkerToken.line_Number + "}");
+        for(k=0; k<TokenList.size(); k++){
+          System.out.println(TokenList.get(k).value_Part.toString());
+
+           }
+    }
+}
