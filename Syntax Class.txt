@@ -1,0 +1,1580 @@
+class Syntax {
+
+    int k=0;
+
+    public boolean start(){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("class")){
+    if(def()){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+        k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("class")){
+        k++;
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+        k++;
+    if(inh()){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+        k++;
+        if(CB()){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+        k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("static")){
+            k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("void")){
+        k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("main")){
+k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+            k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+            k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+        k++;
+        if(MST()){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+        k++;
+        if(CB()){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}"))
+        {k++;
+        if(def()){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("$"))    
+        return true;
+        }}}}}}}}}}}}}}}}}}}}
+
+return false;
+
+
+ }   
+    public boolean def(){
+
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("class")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("$"))
+        {
+            if(class_def()){
+if(def()){
+                   return true;
+               }
+            }
+        }
+
+        return true;
+    }
+    public boolean inh(){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("extends")){
+            k++;
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")) {
+               k++;
+               return true;
+           }
+        }
+        return true;
+    }
+    public boolean Dec(){
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")){
+        if(AM()){
+            if(DT()){
+                if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+                k++;
+                if(init()){
+                    if(list()){
+              return true;
+                    }
+                }
+                }
+            }
+        }
+        }
+        return false;
+    }
+    public boolean list(){ 
+
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+       if(((LexicalAnalyzer.TokenList.get(k).value_Part).equals(","))){
+       k++;
+       if(((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier"))){
+           k++;
+        if(init()){   
+        if(list()){
+        return true;
+    }
+        }
+       }
+        }
+    }
+    return true;
+ }
+  public boolean init(){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=") ){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+      k++;
+      if(OE()){
+          return true;
+      }
+      }
+      }
+      else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+          return true;
+      }
+      return false;
+  }
+  public boolean For(){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("for") ){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("for")){
+      k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+         k++;
+         if(C1()){
+             if(C2()){
+              if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")){
+                  k++;
+                 if(C3()){ 
+                 if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+                     k++;
+             if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){        
+             k++;
+             if(MST()){
+                 if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+                 k++;
+                 return true;
+         }
+             }
+             }
+                 }
+                 }
+              }
+             }
+         }
+      }
+      }
+      }
+      return true;
+  }
+  public boolean C1(){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("bool")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string"))
+      {
+          if(Dec()){
+          if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")){    
+          k++;
+          return true;
+          }
+          }
+      }
+      else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      if(Assign()){
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")) {
+           k++;
+             return true;
+         }
+      }
+      }
+      return false;
+    }
+  public boolean C2(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  if(OE()){
+  return true;
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")){
+  return true;
+  }
+   return false; 
+  }
+  public boolean C3(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier"))
+  {
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+          k++;
+          if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+              k++;
+              return true;
+          }
+
+  }
+   }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  if(Assign()){
+  return true;
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  return true;
+  }
+  return false;
+      }
+ public boolean IF(){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("if"))
+     {
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("if")){
+        k++;
+        if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("("))
+        {
+            k++;
+            if(OE()){
+                if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+                k++;
+           if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){     
+  k++;
+          if(MST()){
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+         k++;
+         return true;
+ }
+   }
+   }
+  }
+ }
+  }
+   }
+   }
+     return false;
+     }
+ public boolean ElseIf(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("elseif")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("elseif")){
+ k++;
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("("))
+        {
+            k++;
+            if(OE()){
+             if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+                k++;
+           if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){     
+          k++;
+          if(MST()){
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+         k++;
+         return true;
+ }
+   }
+   }
+  }
+ }
+  }
+ }
+ }
+ return false;
+     }
+ public boolean Else(){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("else")){
+       if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("else")){
+        k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+         k++;
+if(MST()){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+    k++;
+    return true;
+    }
+}
+              }
+          }
+
+  }
+      return false;
+ }
+ public boolean DoWhile(){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("do")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("do")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+     k++;
+     if(MST()){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("while")){
+  k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+     k++;
+     if(OE()){
+       if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+      k++;
+      return true;
+       }
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     }
+     return false;
+ }
+ public boolean While(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("while")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("while")){
+ k++;
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+ k++;
+ if(OE()){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+     k++;
+     if(MST()){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+     k++;
+     return true;
+     }
+     }
+     }
+ }
+ }
+ }
+ }
+ }
+ return false;
+ }
+ public boolean Ts(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+ k++;
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+ k++;
+     return true;
+ }
+ }}
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+ k++;
+   return true;
+     }
+ }}
+ else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier"))
+ {return true;
+ }
+ return false;
+ }
+ public boolean Assign(){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     if(Ts()){
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     k++;
+     if(ref()){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")){
+     k++;
+     if(OE()){
+         return true;
+     }
+     }
+     }
+     }
+     }
+     }
+     return false;
+ }
+ public boolean Return(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("return")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("return")){
+ k++;
+ if(R1()){
+ return true;
+ }
+ }
+ }
+ return false;
+ }
+ public boolean R1(){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")){
+ if(OE()){
+ return true;
+ }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals(";")){
+ return true;
+ }
+ return false;
+ }
+ public boolean AM(){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("bool")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+         k++;
+     return true;
+     }
+     }
+     else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+     k++;
+         return true;
+     }
+     return true;
+     }
+ public boolean DT(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")){
+ k++;
+ return true;
+ }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")){
+     k++;
+     return true;
+ }}
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")){
+     k++;
+ return true;
+ }
+ }
+ return false;
+ }
+ public boolean PL(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")){
+     if(DT()){
+     if(PL2()){
+     return true;
+     }
+     }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+ return true;
+ }
+ return false;
+ }
+ public boolean PL1(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+     k++;
+     if(PL()){
+     return true;
+     }
+     }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+ return true;
+ }
+ return false;
+ }
+ public boolean PL2(){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ k++;
+ if(PL3()){
+ return true;
+ }
+ }
+ }
+ return false;
+ }
+ public boolean PL3(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+  if(PL1()){
+     return true;
+     }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+       k++;
+       if(OE()){
+       if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+      k++;
+      if(PL1()){
+          return true;
+      }
+       }
+       }
+   }  
+   }else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+ return true;
+   }
+ return false;
+ }
+ public boolean class_def(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("class")){
+ if(AM1()){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("class")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     k++;
+     if(inh()){
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("{")){
+     k++;
+     if(CB()){
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("}")){
+     k++;
+     return true;
+     }
+     }
+     }
+     }
+     }
+     }
+ }
+ }
+ return false;
+ }
+ public boolean ref(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+ k++;
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ k++;
+ if(ref()){
+ return true;
+ }
+ }
+ }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+     k++;
+     if(args()){
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+         k++;
+         if(ref()){
+         return true;
+         }
+         }
+     }
+ }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+         k++;
+  if(args()){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+        k++;
+      
+  if(x()){
+  return true;
+  }
+  }
+ }}}
+ else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("!=")){
+ return true;
+ } 
+ return true;
+ }
+ public boolean AM1(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private"))
+ {
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+     k++;
+     return true;
+     }
+ }
+ return true;
+ }
+ public boolean x(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+     k++;
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     k++;
+     if(ref()){
+         return true;
+     }
+     }
+     }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ if(args()){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+ k++;
+ if(ref()){
+ return true;
+ }
+ }
+ }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("!=")){
+return true;     
+ }
+ return true;
+ }
+
+public boolean funcall(){
+if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+if(Ts()){
+if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+k++;
+if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+k++;
+if(args()){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+    k++;
+    return true;
+    }
+}
+}
+}
+}
+}
+return false;
+}
+public boolean args(){
+if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")){
+if(OE()){
+if(args1()){
+return true;
+}
+}
+}
+else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+   return true; 
+}
+return true;
+}
+public boolean args1(){
+if((LexicalAnalyzer.TokenList.get(k).class_Part).equals(",")){
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals(",")){
+    k++;
+    if(args()){
+    return true;
+    }
+    }}
+    else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+        return true;
+    }
+return false;
+}
+public boolean OE(){
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+    if(AE()){
+    if(OE1()){
+  return true;
+    }}}
+    return false;
+    }
+    public boolean OE1(){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")){
+        k++;
+        if(AE()){
+        if(OE1()){
+ return true;
+        }
+        }
+    }
+    }
+    else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+ return true;       
+    }
+    return false;
+    }
+    public boolean AE(){
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+    if(RE()){
+    if(AE1()){
+    return true;
+    }}}
+    return false;
+    }
+    public boolean AE1(){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&"))
+    {if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&")){
+    k++;
+    if(RE()){
+    if(AE1()){
+    return true;
+    }
+    }
+    }
+
+    }
+    else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+    return true;        
+    }
+    return false;
+        }
+ public boolean RE(){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+ if(E()){
+ if(RE1()){
+ return true;
+ }
+ }
+ }
+ return false;
+ }
+   public boolean RE1(){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")){
+   k++;
+   if(E()){
+   if(RE1()){
+   return true;
+   }
+   }
+   }
+   }
+   else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+      return true; 
+   }
+   return false;
+   }
+   public boolean E(){
+   if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+   if(T()){
+   if(E1()){
+   return true;
+   }
+   }
+   }
+   return false;
+   }
+  public boolean E1(){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("+")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("-")){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("+")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("-")){
+   k++;
+   if(T()){
+   if(E1()){
+   return true;
+   }
+   }
+   }
+   }
+   else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+return true;
+   }
+   
+   return false;
+   }
+  public boolean T(){
+   if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+   if(F()){
+   if(T1()){
+   return true;
+   }
+   }
+   }
+   return false;
+   }
+  public boolean T1(){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("*")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("%")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("/")){
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("*")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("/")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("%")){
+ k++;
+   if(F()){
+   if(T1()){
+   return true;
+   }
+   }
+   }
+   }
+   else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("+")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("-")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+  return true;
+   }
+   return false;
+   }
+  public boolean F(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")){
+  k++;
+  return true;
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+          k++;
+          if(OE()){
+          if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+          k++;
+          return true;
+          }
+          }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      k++;
+      if(F()){
+      return true;
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  if(F1()){
+  return true;
+  }
+  }
+  return false;
+  }
+  public boolean F1(){
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+         if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){ 
+             k++;
+      if(F2()){
+          return true;
+      }
+      }
+      else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+          k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+              k++;
+          if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+              k++;
+              if(F2()){
+              return true;
+  }
+          }
+      }
+      }}
+      else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+          k++;
+          if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+          if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+              k++;
+              if(F2()){
+              return true;
+              }
+          }
+      }
+      }}
+      else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+      k++;
+  return true;
+      }
+      }}
+      return false;
+  }
+  public boolean F2(){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      k++;
+      if(F2()){
+      return true;
+      }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      k++;
+      if(args()){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+      k++;
+      if(F3()){
+      return true;
+      }
+      }
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  k++;
+  return true;
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+      k++;
+      if(args()){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+      k++;
+      if(F3()){
+      return true;
+      }
+      }
+      }
+  }
+  }
+  return true;
+  }
+  public boolean F3(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+      k++;
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      k++;
+      if(F2()){
+      return true;
+      }
+      }
+
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("*")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("%")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("/")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("+")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("-")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("&&")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("||")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+  return true;
+  }
+return false;
+  }
+  public boolean SST(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")){
+      k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+          k++;
+      if(SST1()){
+      return true;
+      }      
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+    k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")){
+      k++;
+      if(SST1()){
+      return true;
+      }
+      }
+  }}
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ k++;
+ if(SST2()){
+ return true;
+ }
+ }
+  }
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")){
+ k++;
+ if(SST3()){
+ return true;
+ }
+  }
+  
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+  k++;
+  if(DT()){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(init()){
+  if(list()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+  k++;
+  if(DT()){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(init()){
+  if(list()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("while")){
+     if(While()){
+     return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("do")){
+     if(DoWhile()){
+          return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("if")){
+     if(IF()){
+          return (true);
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("elseif")){
+     if(ElseIf()){
+          return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("else")){
+     if(Else()){
+          return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("return")){
+     if(Return()){
+          return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("for")){
+     if(For()){
+          return true;
+     }
+
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("ArrayList")){
+     if(Arraylist()){
+          return true;
+     }
+
+  }
+
+
+  return false;
+  }
+  public boolean SST1(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(SST4()){
+  return true;
+  }
+  }
+  }
+  return false;
+  }
+  public boolean SST2(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")){
+  if(ref()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("="))
+  {k++;
+  if(OE()){
+  return true;
+  }
+
+  }}
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      k++;
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+     k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("new")){
+    k++;
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+    k++;
+    if(args()){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+     k++;
+     return true;
+     }   }
+    }
+    }
+    } 
+     } 
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(args()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  return true;
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  k++;
+  return true;
+  }
+  }
+  return false;
+  }
+  public boolean SST3(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(init()){
+  if(list()){
+  return true;
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+  if(ar()){
+
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(ar3()){
+  return true;
+  }
+  }
+  }
+  }
+  return false;
+  }
+  public boolean SST4(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("#")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("!")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")){
+  if(ref()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("!=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("==")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+  k++;
+  if(OE()){
+  return true;
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(args()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  return true;
+  }
+  }
+  }
+  }
+  return false;
+  }
+
+  public boolean MST(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("this")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("super")||(LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("++")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("--")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("while")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("do")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("if")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("elseif")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("else")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("return")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("for")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("ArrayList")){
+  if(SST()){
+
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")){
+      k++;
+  if(MST()){
+  return true;
+  }
+  }
+  }
+  }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}"))
+  {
+      return true;
+  }
+  return false;
+  }
+  public boolean ar1(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+  k++;
+  if(ar2()){
+  return true;
+  }
+  }
+  }
+  return false;
+  }
+  public boolean CB(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("public")){
+
+
+      if(CB1()){
+      return true;
+
+      }
+  }
+  else if ((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("private")){
+      k++;
+      if(CB1()){
+      return true;
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("static")){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("static")){
+      k++;
+      if(Return()){
+      if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+      k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      k++;
+      if(PL()){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+          k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+      k++;
+      if(MST()){
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+      k++;
+      if(CB()){
+      return true;
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ k++;
+  if(CB2()){
+  return true;
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("sting")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")){
+  if(DT()){
+  if(CB3()){
+  return true;
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("void")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("void")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  return true;
+      }
+  public boolean CB1(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("sting")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")){
+      if(DT()){
+      if(CB5()){    
+      return true;
+      }
+      }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+       if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("void")){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("void")){
+  k++;
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  return false;
+
+  }
+  public boolean CB2(){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("new")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+
+  k++;
+  if(args()){
+  if(CB()){
+      return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+return false;
+  }
+  public boolean CB3(){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(CB4()){
+      return true;
+  }
+  }
+  }
+  else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  if(ar()){
+  if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+  k++;
+  if(ar1()){
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  return false;
+  }
+ public boolean CB4(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+ }
+ else if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")){
+ if(init()){
+ if(list()){
+   if(CB()){  
+   return true;
+   }
+ }
+ }
+ }
+ return false;
+ }
+ public boolean CB5(){
+ if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+         k++;
+         if(CB6()){
+             return true;
+         }
+     }
+ }
+ return false;
+ }
+ public boolean CB6(){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(";")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals(",")){
+      if(init()){
+ if(list()){
+   if(CB()){  
+   return true;
+   }
+ }
+ }   
+     }
+  else if ((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+  k++;
+  if(PL()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+  k++;
+  if(MST()){
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+  k++;
+  if(CB()){
+  return true;
+  }
+  }
+  }
+  }
+  }
+  }
+  }
+     } 
+     return false;
+ }
+ public boolean ar(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ k++;
+ if(args()){
+ if(ar1()){
+ return true;
+ }
+ }
+ }}
+ return false;
+ }
+ public boolean Arraylist(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("ArrayList")){
+     if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("ArrayList")){
+    k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")){
+        k++; 
+        if(DT()){
+            if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")){
+                k++;
+    if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+    k++;
+    if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+   k++;
+   if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("new")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("ArrayList")){
+  k++;
+  if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("<")){
+      k++;
+     if(DT()){
+         if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(">")){
+             k++;
+
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("(")){
+      k++;
+      if((LexicalAnalyzer.TokenList.get(k).value_Part).equals(")")){
+      k++;
+      return true;
+      }
+      }
+  }
+   }
+    }
+    }
+         }
+
+ }
+ }
+ }
+ }
+ }
+ }
+ }
+ return false;
+ }
+ public boolean array_dec(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("string")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("double")||(LexicalAnalyzer.TokenList.get(k).value_Part).equals("boolean")){
+ if(DT()){
+     if(ar()){
+     if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+     k++;
+     if(ar3()){
+         return true;
+     }
+     }
+     }
+ }
+ }
+ return false;
+ }
+ public boolean ar2(){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("[")){
+ k++;
+ if(args()){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("]")){
+ k++;
+ return true;
+ }
+ }
+ }}
+ else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ return true;
+ }
+ return true;
+ }
+ public boolean ar3(){
+
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("=")){
+ k++;
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("{")){
+     k++;
+ if(args()){
+ if((LexicalAnalyzer.TokenList.get(k).value_Part).equals("}")){
+ k++;
+ return true;
+ }
+ }
+ }}
+ }else if((LexicalAnalyzer.TokenList.get(k).class_Part).equals("Identifier")){
+ return true;}
+ return true;
+ }
+
+
+
+   public void  parser(){
+ if(start()==true && (LexicalAnalyzer.TokenList.get(k).value_Part).equals("$"))
+ {
+      System.out.println("success");
+ }
+ else{
+      System.out.println("unsuccess");
+
+ }
+     }
+
+
+
+}
